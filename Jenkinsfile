@@ -5,7 +5,12 @@ pipeline {
       stage('Build Artifact') {
             steps {
               sh "mvn clean package -DskipTests=true"
-              archive 'target/*.jar' //so that they can be downloaded later
+              archive 'target/*.jar' //test trigger
+            }
+        }
+      stage('unit tests') {
+            steps {
+              sh "mvn test"
             }
         }   
     }
